@@ -1,0 +1,23 @@
+{
+    "name": "soud/support",
+    "description": "Support classes with common use-cases, with no dependencies.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["support"],
+    "authors": [
+        {
+            "name": "Linus Sörensen",
+            "email": "sorensen.linus@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Soud\\": "src"
+        }
+    }
+}
