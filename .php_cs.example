@@ -1,12 +1,22 @@
 <?php
 $finder = PhpCsFixer\Finder::create()
-    ->in('src')
-;
+   ->in( [
+     'src',
+   ])
+   ->name('*.php')
+   ->notName('*.blade.php')
+   ->ignoreDotFiles(true)
+   ->ignoreVCS(true);
+
 return PhpCsFixer\Config::create()
-    ->setRules(array(
+    ->setRules([
         '@Symfony' => true,
-        'array_syntax' => array('syntax' => 'short'),
-        'concat_space' => array('spacing' => 'one'),
+        'array_syntax' => [
+            'syntax' => 'short',
+        ],
+        'concat_space' => [
+            'spacing' => 'one',
+        ],
         'no_blank_lines_before_namespace' => true,
         'single_blank_line_before_namespace' => false,
         'no_extra_consecutive_blank_lines' => true,
@@ -15,6 +25,6 @@ return PhpCsFixer\Config::create()
         'short_scalar_cast' => true,
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
-    ))
+    ])
     ->setFinder($finder)
     ->setUsingCache(true);
