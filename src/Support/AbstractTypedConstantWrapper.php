@@ -3,10 +3,8 @@
 declare(strict_types=1);
 namespace Soud\Support;
 
-use IteratorAggregate;
 use ReflectionClass;
 use ReflectionException;
-use Traversable;
 
 /**
  * Typed wrapper class for constant values.
@@ -18,7 +16,7 @@ use Traversable;
  *
  * @see https://www.webfactory.de/blog/expressive-type-checked-constants-for-php
  */
-abstract class AbstractTypedConstantWrapper implements IteratorAggregate
+abstract class AbstractTypedConstantWrapper
 {
     /**
      * @var array
@@ -73,30 +71,14 @@ abstract class AbstractTypedConstantWrapper implements IteratorAggregate
             }
         }
 
-        return static::$instances;
+        return array_values(static::$instances);
     }
 
     /**
-     * @return string[]
+     * @return mixed
      */
-    public static function getConstantKeys(): array
+    public function getValue()
     {
-        try {
-            return array_keys(static::constants());
-        } catch (ReflectionException $e) {
-            return [];
-        }
-    }
-
-    /**
-     * @throws ReflectionException
-     */
-    public function getIterator(): Traversable
-    {
-        return (function () {
-            foreach (static::constants() as $key => $value) {
-                yield static::constant($value);
-            }
-        })();
+        return $this->value;
     }
 }
